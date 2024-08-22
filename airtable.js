@@ -1,5 +1,5 @@
 class AirtableRequestBuilder{
-  constructor(key, base, table){
+  constructor(base, table){
     this.base = base;
     this.fields = [];
     this.maxRecords = 0;
@@ -40,9 +40,9 @@ function testAirtableRequestBuilder(){
   var url = new AirtableRequestBuilder(airtableBase,"Passengers").addField("PassengerName").addField("PassengerNumber").setFilterFormula("FIND('Mary',{PassengerName}) > 0").setMaxRecords(10).build();
   console.log(url);
 }
-function airtableFetch(url){
+function airtableFetch(apiKey, url){
   let headers = {
-    "Authorization":"Bearer " + airtableKey
+    "Authorization":"Bearer " + apiKey
   }
   let options = {
     headers:headers,
